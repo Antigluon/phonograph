@@ -1,0 +1,16 @@
+[
+  {
+    "data": {
+      "options": [],
+      "name": "ping",
+      "description": "Replies with pong!"
+    }
+  },
+  {
+    "data": {
+      "options": [],
+      "name": "info",
+      "description": "Information about Phonograph"
+    }
+  }
+]
