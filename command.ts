@@ -18,17 +18,12 @@ export default class Command {
 }
 
 export async function getCommands(path: string, commands: Command[]) {
-  const stat = await fs.stat(path);
-  if (stat.isDirectory()) {
-    const children = await fs.readdir(path);
-    for (const child of children) {
-      await getCommands(`${path}/${child}`, commands);
-    }
-  }
-  else if (stat.isFile()) {
-    const file_commands: Command[] = (await import(path)).default;
+  const files = await fs.readdir(path, { recursive: true });
+  for (const file of files) {
+    const qualified_path = `${path}/${file}`;
+    const file_commands: Command[] = (await import(qualified_path)).default;
     commands.push(...file_commands);
-    log.info(`Found ${file_commands.length} commands in ${path}.`);
+    log.info(`Found ${file_commands.length} commands in ${qualified_path}.`);
   }
 }
 
