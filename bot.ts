@@ -9,9 +9,9 @@ import {
 import log from './logging';
 import chalk from 'chalk';
 import Command from './command';
-import { getCommands } from './command'
+import { getCommands, registerCommands } from './command'
 import getToken from './token';
-import registerCommands from './command_registration';
+// import registerCommands from './command_registration';
 
 
 // Configuration and setup
@@ -44,7 +44,7 @@ if (!clientId) {
   );
   process.exit(1);
 }
-await registerCommands(clientId, commands);
+await registerCommands(clientId, token, commands);
 
 const commandMap = new Collection<string, Command>();
 commands.forEach((command) => {
