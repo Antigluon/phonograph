@@ -1,4 +1,4 @@
-import Command from "../command.ts";
+import Command from "command";
 const commands = [
   Command.new("ping", "Replies with pong!", async (interaction: any) => {
     await interaction.reply('Pong!');
